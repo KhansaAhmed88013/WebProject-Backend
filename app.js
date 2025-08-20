@@ -6,7 +6,11 @@ var cors = require('cors')
 var app = express()
 const bcrypt = require('bcrypt'); // make sure this is at the top of your file
  
-app.use(cors())
+app.use(cors({
+  origin: "https://web-project-seven-sigma.vercel.app", // frontend domain
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}))
 const port = process.env.PORT || 3000; // fallback for local testing
 const { Op, where } = require('sequelize');
 const { error } = require('console');
