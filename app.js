@@ -89,10 +89,7 @@ app.post('/adduser', async (req, res) => {
       return res.status(400).json({ message: "Contact number already exists. Please use a different phone number." });
     }
 
-    const whatsappExists = await User.findOne({ where: { whatsapp_number } });
-    if (whatsappExists) {
-      return res.status(400).json({ message: "WhatsApp number already exists. Please use a different phone number." });
-    }
+    
 
     // ✅ Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
