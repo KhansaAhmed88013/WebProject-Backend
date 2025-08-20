@@ -5,12 +5,11 @@ const { connectAndSync, User, sequelize,initAmenities,Business ,Amenity,Business
 var cors = require('cors')
 var app = express()
 const bcrypt = require('bcrypt'); // make sure this is at the top of your file
- 
 app.use(cors({
   origin: "https://web-project-seven-sigma.vercel.app", // frontend domain
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
-}))
+}));
 const port = process.env.PORT || 3000; // fallback for local testing
 const { Op, where } = require('sequelize');
 const { error } = require('console');
@@ -67,6 +66,9 @@ const upload = multer({
 
 app.post('/adduser', async (req, res) => {
   try {
+     res.setHeader("Access-Control-Allow-Origin", "https://web-project-seven-sigma.vercel.app");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
     const { username, email, contact_number, whatsapp_number, password, first_name, last_name, website } = req.body;
 
     // Check if email already exists
